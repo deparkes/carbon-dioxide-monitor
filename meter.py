@@ -3,9 +3,9 @@ import time
 import sqlite3
 from datetime import datetime
 
-from CO2Meter import *
+import CO2Meter
 
-Meter = CO2Meter("/dev/hidraw0")
+Meter = CO2Meter.CO2Meter("/dev/hidraw0")
 conn = sqlite3.connect("co2meter.db")
 cursor = conn.cursor()
 no_measurement = True

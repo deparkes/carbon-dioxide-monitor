@@ -1,6 +1,6 @@
 while true;
 do 
-	sudo python3 meter.py >> static/data.dat
+	python3 meter.py
        	sleep 300;
 done
 
