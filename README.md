@@ -58,3 +58,10 @@ Run
 ```
 python3 dashboard.py
 ```
+
+# Todo
+- Check for existing database file and create one if it does not exist
+- Explore option for rolling log
+- Have single script to run in one go
+- Clarify hidraw user settings
+- Make IP address for server/raspberry pi configurable e.g. via env var
