@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def notdash():
-    r = requests.get('http://192.168.0.9:5000/api')
+    r = requests.get('http://localhost:5000/api')
     data = r.json()
     co2 = [x['co2'] for x in data]
     temperature = [x['temperature'] for x in data]
