@@ -19,19 +19,6 @@ def get_data():
     cursor.execute(statement)
     return cursor.fetchall()
     
-@app.route('/monitor')
-def monitor():
-    csv_dir = './static'
-    csv_file = 'data.dat'
-    csv_path = os.path.join(csv_dir, csv_file)
-
-    if not os.path.isfile(csv_path):
-        return "ERROR: file %s was not found on the server" % csv_file
-
-    resp = make_response(open(csv_path).read())
-    resp.headers["Content-type"]="application/json;charset=UTF-8"
-    return resp
-
 @app.route('/api')
 def api():
     data = get_data()
@@ -41,7 +28,7 @@ def api():
 
 @app.route('/')
 def myapp():
-    message = "To use this app: %s/monitor" % request.base_url
+    message = "To use this app: %sapi" % request.base_url
     return message
 
 if __name__ == '__main__':
