@@ -32,6 +32,12 @@ requests (for dashboard)
 ```
 
 ## Usage
+Activate the virtual environment if you are using it
+
+```
+source venv/bin/activate
+```
+
 
 ### Start collecting Data
 
