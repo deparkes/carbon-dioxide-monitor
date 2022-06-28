@@ -66,6 +66,9 @@ Run
 python3 dashboard.py
 ```
 
+### Access the dashboard
+<ip_address>:3000
+
 # Todo
 - Check for existing database file and create one if it does not exist
 - Explore option for rolling log
