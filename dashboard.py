@@ -29,7 +29,9 @@ def notdash():
                              secondary_y=True)
     graphJSON = json.dumps(fig_1, cls=plotly.utils.PlotlyJSONEncoder)
 
-    return render_template('dashboard.html', graphJSON=graphJSON)
+    return render_template('dashboard.html', 
+            graphJSON1=graphJSON,
+            graphJSON2=graphJSON)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)
