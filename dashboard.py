@@ -46,7 +46,9 @@ def notdash():
     
     return render_template('dashboard.html', 
             graphJSON1=graphJSON1,
-            graphJSON2=graphJSON2)
+            graphJSON2=graphJSON2,
+            latest_upstairs_temp=temperature_1[-1],
+            latest_downstairs_temp=temperature_2[-1])
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)
