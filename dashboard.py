@@ -11,23 +11,23 @@ app = Flask(__name__)
 def notdash():
     r = requests.get('http://localhost:5000/api')
     data = r.json()
-    co2 = [x['co2'] for x in data]
-    temperature = [x['temperature'] for x in data]
-    timestamp = [x['timestamp'] for x in data]
+    co2_1 = [x['co2'] for x in data if x['deviceid'] == 1 ]
+    temperature_1 = [x['temperature'] for x in data if x['deviceid'] == 1 ]
+    timestamp_1 = [x['timestamp'] for x in data if x['deviceid'] == 1]
 
-    fig = make_subplots(specs=[[{'secondary_y': True}]])
+    fig_1 = make_subplots(specs=[[{'secondary_y': True}]])
     
-    fig.add_trace(go.Scatter(x=timestamp,
-                             y=co2,
+    fig_1.add_trace(go.Scatter(x=timestamp_1,
+                             y=co2_1,
                              name="CO2 (ppm)"),
                              secondary_y=False
                 )
 
-    fig.add_trace(go.Scatter(x=timestamp,
-                             y=temperature,
+    fig_1.add_trace(go.Scatter(x=timestamp_1,
+                             y=temperature_1,
                              name="Temperature (deg. C)"),
                              secondary_y=True)
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    graphJSON = json.dumps(fig_1, cls=plotly.utils.PlotlyJSONEncoder)
 
     return render_template('dashboard.html', graphJSON=graphJSON)
 

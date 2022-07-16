@@ -13,6 +13,7 @@ while no_measurement:
 #for i in range(3):
     measurement = Meter.get_data()
     measurement.update({'timestamp': datetime.now()})
+    measurement.update({'device_id': 1})
     try:
         print(measurement['timestamp'].strftime("%Y-%m-%d %H:%M:%S"),
         measurement['co2'], 
@@ -20,10 +21,12 @@ while no_measurement:
         sep=","
         )
         
-        cursor.executemany("INSERT INTO data VALUES (?,?,?)",
+        cursor.executemany("INSERT INTO data VALUES (?,?,?,?)",
                 [(measurement['timestamp'].strftime("%Y-%m-%d %H:%M:%S"),
                     measurement['co2'],
-                    measurement['temperature'])]
+                    measurement['temperature'],
+                    measurement['device_id'])
+                    ]
                     )
         conn.commit()
         no_measurement = False

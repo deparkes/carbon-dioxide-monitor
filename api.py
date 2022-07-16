@@ -22,8 +22,8 @@ def get_data():
 @app.route('/api')
 def api():
     data = get_data()
-    columns = ['timestamp', 'co2', 'temperature']
-    result =  [{'timestamp': row[0], 'co2': row[1], 'temperature': row[2]}for row in data]    
+    columns = ['timestamp', 'co2', 'temperature', 'deviceid']
+    result =  [{'timestamp': row[0], 'co2': row[1], 'temperature': row[2], 'deviceid': row[3]} for row in data]    
     return jsonify(result)
 
 @app.route('/')
