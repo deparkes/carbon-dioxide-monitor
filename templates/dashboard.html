@@ -1,11 +1,20 @@
 <html>
+	<head>
+	<!-- Minified version -->
+	<!-- https://github.com/kevquirk/simple.css/wiki/Getting-Started-With-Simple.css -->
+	<link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+	</head>
 	<body>
 		<h1>Environmental Sensors</h1>
 		<h2>Upstairs</h2>
+		<p>
 		Current upstairs temp: <strong>{{latest_upstairs_temp}}</strong> degrees.
+		</p>
 		<div id='chart1' class='chart'></div>
 		<h2>Downstairs</h2>
+		<p>
 		Current downstairs temp: <strong>{{latest_downstairs_temp}}</strong> degrees.
+		</p>
 		<div id='chart2' class='chart'></div>
 	</body><script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 	<script type='text/javascript'>
