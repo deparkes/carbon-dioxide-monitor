@@ -12,14 +12,18 @@ try:
 
         conn = sqlite3.connect("co2meter.db")
         cursor = conn.cursor()
-
+        cursor.execute("SELECT * FROM devices WHERE identifier=?", (json_line['mac address'],))
+        rows = cursor.fetchall()
+        deviceid = rows[0][0]
+        
         cursor.executemany("INSERT INTO data VALUES (?,?,?,?)",
                 [(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                     None,
                     json_line['temperature'],
-                    2)
+                    deviceid)
                  ]
                 )
         conn.commit()
-except:
+except Exception as e:
     print("Unable to load ble data")
+    print(e)

@@ -15,11 +15,7 @@ while no_measurement:
     measurement.update({'timestamp': datetime.now()})
     measurement.update({'device_id': 1})
     try:
-        print(measurement['timestamp'].strftime("%Y-%m-%d %H:%M:%S"),
-        measurement['co2'], 
-        measurement['temperature'],
-        sep=","
-        )
+
         
         cursor.executemany("INSERT INTO data VALUES (?,?,?,?)",
                 [(measurement['timestamp'].strftime("%Y-%m-%d %H:%M:%S"),

@@ -18,9 +18,13 @@ def notdash():
     temperature_2 = [x['temperature'] for x in data if x['deviceid'] == 2]
     timestamp_2 = [x['timestamp'] for x in data if x['deviceid'] == 2]
 
+    temperature_3 = [x['temperature'] for x in data if x['deviceid'] == 3]
+    timestamp_3 = [x['timestamp'] for x in data if x['deviceid'] == 3]
+
     fig_1 = make_subplots(specs=[[{'secondary_y': True}]])
     fig_2 = make_subplots(specs=[[{'secondary_y': True}]])
-
+    fig_3 = make_subplots(specs=[[{'secondary_y': True}]])
+    
     fig_1.add_trace(go.Scatter(x=timestamp_1,
                              y=co2_1,
                              name="CO2 (ppm)"),
@@ -40,15 +44,29 @@ def notdash():
                             y=temperature_2,
                             name="Temperaure (dec. C)"),
                             secondary_y=True)
-        
+
+    fig_3.add_trace(go.Scatter(x=[],
+                            y=[],
+                            name="CO2 (ppm)"),
+                            secondary_y=False)
+
+    fig_3.add_trace(go.Scatter(x=timestamp_3,
+                            y=temperature_3,
+                            name="Temperaure (dec. C)"),
+                            secondary_y=True)
+
     graphJSON1 = json.dumps(fig_1, cls=plotly.utils.PlotlyJSONEncoder)
     graphJSON2 = json.dumps(fig_2, cls=plotly.utils.PlotlyJSONEncoder)
-    
+    graphJSON3 = json.dumps(fig_3, cls=plotly.utils.PlotlyJSONEncoder)
+
     return render_template('dashboard.html', 
             graphJSON1=graphJSON1,
             graphJSON2=graphJSON2,
+            graphJSON3=graphJSON3,
             latest_upstairs_temp=temperature_1[-1],
-            latest_downstairs_temp=temperature_2[-1])
+            latest_downstairs_temp=temperature_2[-1],
+            latest_bedroom_temp=temperature_3[-1]
+            )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000, debug=True)
