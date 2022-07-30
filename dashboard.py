@@ -25,14 +25,20 @@ def notdash():
     fig_2 = make_subplots(specs=[[{'secondary_y': True}]])
     fig_3 = make_subplots(specs=[[{'secondary_y': True}]])
     
-    fig_1.add_trace(go.Scatter(x=timestamp_1,
-                             y=co2_1,
+
+
+    fig_1_n = min(len(timestamp_1), 4000)
+    fig_2_n = min(len(timestamp_2), 4000)
+    fig_3_n = min(len(timestamp_3), 4000)
+
+    fig_1.add_trace(go.Scatter(x=timestamp_1[-fig_1_n:],
+                             y=co2_1[-fig_1_n:],
                              name="CO2 (ppm)"),
                              secondary_y=False
                 )
 
-    fig_1.add_trace(go.Scatter(x=timestamp_1,
-                             y=temperature_1,
+    fig_1.add_trace(go.Scatter(x=timestamp_1[-fig_1_n:],
+                             y=temperature_1[-fig_1_n:],
                              name="Temperature (deg. C)"),
                              secondary_y=True)
     fig_2.add_trace(go.Scatter(x=[],
@@ -40,8 +46,8 @@ def notdash():
                             name="CO2 (ppm)"),
                             secondary_y=False)
 
-    fig_2.add_trace(go.Scatter(x=timestamp_2,
-                            y=temperature_2,
+    fig_2.add_trace(go.Scatter(x=timestamp_2[-fig_2_n:],
+                            y=temperature_2[-fig_2_n:],
                             name="Temperaure (dec. C)"),
                             secondary_y=True)
 
@@ -50,8 +56,8 @@ def notdash():
                             name="CO2 (ppm)"),
                             secondary_y=False)
 
-    fig_3.add_trace(go.Scatter(x=timestamp_3,
-                            y=temperature_3,
+    fig_3.add_trace(go.Scatter(x=timestamp_3[-fig_3_n:],
+                            y=temperature_3[-fig_3_n:],
                             name="Temperaure (dec. C)"),
                             secondary_y=True)
 
