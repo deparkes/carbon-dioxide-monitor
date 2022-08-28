@@ -42,7 +42,7 @@ source venv/bin/activate
 ### Start collecting Data
 
 ```
-bash getdata.sh
+bash runapp.sh
 ```
 
 This assumes you have configured your user to have hidraw access as 
@@ -55,7 +55,7 @@ still isn't working, you may need to restart your machine/raspberry pi.
 Run
 
 ```
-python3 myapp.py
+python3 api.py
 ```
 
 ### Start visualising data
