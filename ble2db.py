@@ -15,14 +15,33 @@ try:
         cursor.execute("SELECT * FROM devices WHERE identifier=?", (json_line['mac address'],))
         rows = cursor.fetchall()
         deviceid = rows[0][0]
-        
+        timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         cursor.executemany("INSERT INTO data VALUES (?,?,?,?)",
-                [(datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                [(timestamp,
                     None,
                     json_line['temperature'],
                     deviceid)
                  ]
                 )
+
+        cursor.executemany("INSERT INTO data_multi_sensor VALUES (?,?,?,?)",
+                [(timestamp,
+                    deviceid,
+                    'temperature',
+                    json_line['temperature'],
+                    )
+                    ]
+                    )
+
+        cursor.executemany("INSERT INTO data_multi_sensor VALUES (?,?,?,?)",
+                [(timestamp,
+                    deviceid,
+                    'humidity',
+                    json_line['humidity'],
+                    )
+                    ]
+                    )
+
         conn.commit()
 except Exception as e:
     print("Unable to load ble data")

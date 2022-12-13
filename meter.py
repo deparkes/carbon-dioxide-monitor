@@ -24,6 +24,24 @@ while no_measurement:
                     measurement['device_id'])
                     ]
                     )
+
+        cursor.executemany("INSERT INTO data_multi_sensor VALUES (?,?,?,?)",
+                [(measurement['timestamp'].strftime("%Y-%m-%d %H:%M:%S"),
+                    measurement['device_id'],
+                    'temperature',
+                    measurement['temperature'],
+                    )
+                    ]
+                    )
+        cursor.executemany("INSERT INTO data_multi_sensor VALUES (?,?,?,?)",
+                [(measurement['timestamp'].strftime("%Y-%m-%d %H:%M:%S"),
+                    measurement['device_id'],
+                    'co2',
+                    measurement['co2'],
+                    )
+                    ]
+                    )
+
         conn.commit()
         no_measurement = False
 
