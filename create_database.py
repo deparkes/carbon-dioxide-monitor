@@ -19,7 +19,7 @@ COMMIT;
 -- New key-value table
 
 CREATE TABLE data_multi_sensor (timestamp datetime, 
-                                deviceid text,
+                                deviceid integer,
                                 key text, 
                                 value real);
 
