@@ -9,27 +9,34 @@ app = Flask(__name__)
 
 @app.route('/')
 def notdash():
-    r = requests.get('http://localhost:5000/api')
+    r = requests.get('http://localhost:5000/api/v2')
     data = r.json()
-    co2_1 = [x['co2'] for x in data if x['deviceid'] == 1 ]
-    temperature_1 = [x['temperature'] for x in data if x['deviceid'] == 1 ]
-    timestamp_1 = [x['timestamp'] for x in data if x['deviceid'] == 1]
+    co2_1 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 1 and x['key'] == 'co2' ]
+    co2_1 = [x[1] for x in co2_1]
 
-    temperature_2 = [x['temperature'] for x in data if x['deviceid'] == 2]
-    timestamp_2 = [x['timestamp'] for x in data if x['deviceid'] == 2]
 
-    temperature_3 = [x['temperature'] for x in data if x['deviceid'] == 3]
-    timestamp_3 = [x['timestamp'] for x in data if x['deviceid'] == 3]
+    t1 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 1 and x['key'] == 'temperature' ]
+    temperature_1 = [x[1] for x in t1]
+    timestamp_1 = [x[0] for x in t1]
 
+    t2 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 2 and x['key'] == 'temperature' ]
+    temperature_2 = [x[1] for x in t2]
+    timestamp_2 = [x[0] for x in t2]
+
+    t3 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 3 and x['key'] == 'temperature' ]
+    temperature_3 = [x[1] for x in t3]
+    timestamp_3 = [x[0] for x in t3]
+
+    
     fig_1 = make_subplots(specs=[[{'secondary_y': True}]])
     fig_2 = make_subplots(specs=[[{'secondary_y': True}]])
     fig_3 = make_subplots(specs=[[{'secondary_y': True}]])
     
 
 
-    fig_1_n = min(len(timestamp_1), 4000)
-    fig_2_n = min(len(timestamp_2), 4000)
-    fig_3_n = min(len(timestamp_3), 4000)
+    fig_1_n = min(len(temperature_1), 4000)
+    fig_2_n = min(len(temperature_2), 4000)
+    fig_3_n = min(len(temperature_3), 4000)
 
     fig_1.add_trace(go.Scatter(x=timestamp_1[-fig_1_n:],
                              y=co2_1[-fig_1_n:],
