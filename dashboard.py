@@ -23,9 +23,17 @@ def notdash():
     temperature_2 = [x[1] for x in t2]
     timestamp_2 = [x[0] for x in t2]
 
+    h2 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 2 and x['key'] == 'humidity' ]
+    humidity_2 = [x[1] for x in h2]
+    timestamp_h2 = [x[0] for x in h2]
+
     t3 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 3 and x['key'] == 'temperature' ]
     temperature_3 = [x[1] for x in t3]
     timestamp_3 = [x[0] for x in t3]
+
+    h3 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 3 and x['key'] == 'humidity' ]
+    humidity_3 = [x[1] for x in h3]
+    timestamp_h3 = [x[0] for x in h3]
 
     
     fig_1 = make_subplots(specs=[[{'secondary_y': True}]])
@@ -40,24 +48,29 @@ def notdash():
 
     fig_1.add_trace(go.Scatter(x=timestamp_1[-fig_1_n:],
                              y=temperature_1[-fig_1_n:],
-                             name="Nook Temperature (deg. C)"),
+                             name="Nook (deg. C)"),
                              secondary_y=False
                 )
 
     fig_1.add_trace(go.Scatter(x=timestamp_2[-fig_2_n:],
                              y=temperature_2[-fig_2_n:],
-                             name="Middle Room Temperature (deg. C)"),
+                             name="Middle Room (deg. C)"),
                              secondary_y=False)
 
     fig_1.add_trace(go.Scatter(x=timestamp_3[-fig_3_n:],
                              y=temperature_3[-fig_3_n:],
-                             name="Bedroom Temperature (deg. C)"),
+                             name="Bedroom (deg. C)"),
                              secondary_y=False)
 
-    fig_2.add_trace(go.Scatter(x=timestamp_2[-fig_2_n:],
-                            y=temperature_2[-fig_2_n:],
-                            name="Temperaure (dec. C)"),
-                            secondary_y=True)
+    fig_2.add_trace(go.Scatter(x=timestamp_h2[-fig_2_n:],
+                            y=humidity_2[-fig_2_n:],
+                             name="Middle Room (%)"),
+                             secondary_y=False)
+
+    fig_2.add_trace(go.Scatter(x=timestamp_h3[-fig_3_n:],
+                            y=humidity_3[-fig_3_n:],
+                            name="Bedroom (%)"),
+                            secondary_y=False)
 
     fig_3.add_trace(go.Scatter(x=[],
                             y=[],
