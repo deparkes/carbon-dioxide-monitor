@@ -69,9 +69,25 @@ python3 dashboard.py
 ### Access the dashboard
 <ip_address>:3000
 
+### Adding a new MI device
+Go to https://atc1441.github.io/TelinkFlasher.html and follow the instructions.
+
+Key steps:
+- Turn on the new device
+- Click 'Connect' to see available devices
+- Select 'pair' for the device you are interested in 
+- Click 'Do Activation'
+- Download the relevant firmware from https://atc1441.github.io/TelinkFlasher.html
+- Click 'Start Flashing'
+- Once it finishes flashing, the data should be visible when ble2db.py is run
+
 # Todo
 - Check for existing database file and create one if it does not exist
 - Explore option for rolling log
 - Have single script to run in one go
 - Clarify hidraw user settings
 - Make IP address for server/raspberry pi configurable e.g. via env var
+- Try out other firmware versions - do they output data in the same format?
+- Create 'add device' page for dashboard
+
+
