@@ -89,5 +89,6 @@ Key steps:
 - Make IP address for server/raspberry pi configurable e.g. via env var
 - Try out other firmware versions - do they output data in the same format?
 - Create 'add device' page for dashboard
+- Only query a subset of the stored data e.g. 50k rows or 
 
 
