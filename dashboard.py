@@ -44,6 +44,14 @@ def notdash():
     humidity_4= [x[1] for x in h4]
     timestamp_h4 = [x[0] for x in h4]
 
+    t5 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 5 and x['key'] == 'temperature' ]
+    temperature_5 = [x[1] for x in t5]
+    timestamp_5 = [x[0] for x in t5]
+
+    h5 = [(x['timestamp'], x['value']) for x in data if x['deviceid'] == 5 and x['key'] == 'humidity' ]
+    humidity_5= [x[1] for x in h5]
+    timestamp_h5 = [x[0] for x in h5]
+
     fig_1 = make_subplots(specs=[[{'secondary_y': True}]])
     fig_2 = make_subplots(specs=[[{'secondary_y': True}]])
     fig_3 = make_subplots(specs=[[{'secondary_y': True}]])
@@ -54,7 +62,9 @@ def notdash():
     fig_2_n = min(len(temperature_2), 4000)
     fig_3_n = min(len(temperature_3), 4000)
     fig_4_n = min(len(temperature_4), 4000)
-    
+    fig_5_n = min(len(temperature_5), 4000)
+
+
     fig_1.add_trace(go.Scatter(x=timestamp_1[-fig_1_n:],
                              y=temperature_1[-fig_1_n:],
                              name="Nook (deg. C)"),
@@ -76,6 +86,11 @@ def notdash():
                              name="Living room (deg. C)"),
                              secondary_y=False)
 
+    fig_1.add_trace(go.Scatter(x=timestamp_5[-fig_5_n:],
+                             y=temperature_5[-fig_5_n:],
+                             name="Kitchen (deg. C)"),
+                             secondary_y=False)                         
+
     fig_2.add_trace(go.Scatter(x=timestamp_h2[-fig_2_n:],
                             y=humidity_2[-fig_2_n:],
                              name="Middle Room (%)"),
@@ -89,6 +104,11 @@ def notdash():
     fig_2.add_trace(go.Scatter(x=timestamp_h4[-fig_4_n:],
                             y=humidity_4[-fig_4_n:],
                             name="Living room (%)"),
+                            secondary_y=False)
+
+    fig_2.add_trace(go.Scatter(x=timestamp_h5[-fig_5_n:],
+                            y=humidity_5[-fig_5_n:],
+                            name="Kitchen (%)"),
                             secondary_y=False)
 
     fig_3.add_trace(go.Scatter(x=[],
@@ -112,7 +132,8 @@ def notdash():
             latest_upstairs_temp=temperature_1[-1],
             latest_downstairs_temp=temperature_2[-1],
             latest_bedroom_temp=temperature_3[-1],
-            latest_livingroom_temp=temperature_4[-1]
+            latest_livingroom_temp=temperature_4[-1],
+            latest_kitchen_temp=temperature_5[-1]
             )
 
 if __name__ == '__main__':
