@@ -111,7 +111,8 @@ def notdash():
             graphJSON3=graphJSON3,
             latest_upstairs_temp=temperature_1[-1],
             latest_downstairs_temp=temperature_2[-1],
-            latest_bedroom_temp=temperature_3[-1]
+            latest_bedroom_temp=temperature_3[-1],
+            latest_livingroom_temp=temperature_4[-1]
             )
 
 if __name__ == '__main__':
