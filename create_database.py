@@ -7,6 +7,7 @@ CREATE TABLE data(timestamp, co2, temperature, deviceid);
 CREATE TABLE DEVICES (deviceid integer primary key, identifier text);
 
 INSERT INTO DEVICES (deviceid, identifier) values (1, 'co2meter');
+INSERT INTO DEVICES (deviceid, identifier) values (4, 'a4:c1:38:49:2c:fc');
 
 BEGIN TRANSACTION;
 CREATE TABLE data_backup(timestamp, co2, temperature, deviceid);
