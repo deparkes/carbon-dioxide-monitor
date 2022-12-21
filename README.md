@@ -90,5 +90,6 @@ Key steps:
 - Try out other firmware versions - do they output data in the same format?
 - Create 'add device' page for dashboard
 - Only query a subset of the stored data e.g. 50k rows or 
-
+- Align trace colours/order possibly with null/placeholder traces
+- Handle empty traces better i.e. trying to access empty lists 
 
