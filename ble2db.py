@@ -60,6 +60,15 @@ try:
                     ]
                     )
 
+        cursor.executemany("INSERT INTO data_multi_sensor VALUES (?,?,?,?)",
+                [(timestamp,
+                    deviceid,
+                    'rssi',
+                    json_line['rssi'],
+                    )
+                    ]
+                    )
+
         conn.commit()
 except Exception as e:
     print("Unable to load ble data")
