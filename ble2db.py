@@ -42,6 +42,24 @@ try:
                     ]
                     )
 
+        cursor.executemany("INSERT INTO data_multi_sensor VALUES (?,?,?,?)",
+                [(timestamp,
+                    deviceid,
+                    'battery',
+                    json_line['battery'],
+                    )
+                    ]
+                    )
+
+        cursor.executemany("INSERT INTO data_multi_sensor VALUES (?,?,?,?)",
+                [(timestamp,
+                    deviceid,
+                    'battery_volts',
+                    json_line['battery_volts'],
+                    )
+                    ]
+                    )
+
         conn.commit()
 except Exception as e:
     print("Unable to load ble data")
