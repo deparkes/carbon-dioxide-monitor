@@ -106,6 +106,11 @@ def notdash():
                              name="Kitchen (deg. C)"),
                              secondary_y=False)                         
 
+    fig_2.add_trace(go.Scatter(x=[],
+                            y=[],
+                             name="Nook (%)"),
+                             secondary_y=False)
+
     fig_2.add_trace(go.Scatter(x=timestamp_h2[-fig_2_n:],
                             y=humidity_2[-fig_2_n:],
                              name="Middle Room (%)"),
