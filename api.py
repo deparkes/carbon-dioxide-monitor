@@ -22,7 +22,7 @@ def get_data():
 def get_data_multi_sensor():
     db = get_db()
     cursor = db.cursor()
-    statement = "SELECT * FROM data_multi_sensor"
+    statement = "SELECT * FROM data_multi_sensor where timestamp between datetime('now', '-21 days') and datetime('now', 'localtime');"
     cursor.execute(statement)
     return cursor.fetchall()
 
